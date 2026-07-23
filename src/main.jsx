@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { profile } from "./data/profile.js";
 import "./styles/styles.css";
@@ -33,32 +33,52 @@ function Header() {
 }
 
 function Hero() {
+  const heroRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const scrollableDistance = rect.height - window.innerHeight;
+      const rawProgress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
+      setProgress(rawProgress);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
+
   return (
-    <section id="home" className="hero section">
-      <TopographicLines />
-      <div className="grain" aria-hidden="true" />
-      <div className="hero-split">
-        <div className="hero-copy">
-          <p className="eyebrow">{profile.role}</p>
-          <h1>{profile.name}</h1>
-          <p className="hero-line">{profile.heroLine}</p>
-          <div className="hero-actions">
+    <section id="home" className="hero-scroll-lock" ref={heroRef}>
+      <div className="hero-sticky">
+        <div className="hero-bg" style={{ backgroundImage: `url(${portraitUrl})` }} aria-hidden="true" />
+        <div className="stained-glass" aria-hidden="true" />
+        <div className="hero-darken" aria-hidden="true" />
+        <TopographicLines />
+        <div className="grain" aria-hidden="true" />
+
+        <div className="hero-content glass-panel" style={{ "--hero-progress": progress }}>
+          <p className={`eyebrow reveal-text ${progress > 0.02 ? "is-visible" : ""}`}>{profile.role}</p>
+          <h1 className={`mega-title reveal-text ${progress > 0.14 ? "is-visible" : ""}`}>{profile.name}</h1>
+          <p className={`hero-line reveal-text ${progress > 0.32 ? "is-visible" : ""}`}>{profile.heroLine}</p>
+          <p className={`hero-subline reveal-text ${progress > 0.50 ? "is-visible" : ""}`}>{profile.statement}</p>
+          <div className={`hero-actions reveal-text ${progress > 0.68 ? "is-visible" : ""}`}>
             <a className="button primary" href="#work">View Work</a>
             <a className="button secondary" href={`mailto:${profile.email}`}>Email</a>
           </div>
         </div>
 
-        <div className="portrait-stage">
-          <div className="portrait-frame natural">
-            <img src={portraitUrl} alt="Professional portrait of Vedant Agarwal" />
-          </div>
-          <div className="portrait-frame stylized">
-            <img src={portraitUrl} alt="Stylized professional portrait of Vedant Agarwal" />
-          </div>
-          <div className="floating-badge">AI + UX</div>
+        <div className="hero-scroll-hint">
+          <span>Scroll to reveal</span>
+          <div className="scroll-meter"><i style={{ transform: `scaleY(${progress})` }} /></div>
         </div>
       </div>
-      <div className="scroll-cue">Scroll</div>
     </section>
   );
 }
