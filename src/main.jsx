@@ -28,9 +28,12 @@ function App() {
       <Header />
 
       <section id="home" className="hero">
-        <h1>{profile.name}</h1>
-        <p>{profile.tagline}</p>
-        <p>{profile.intro}</p>
+        <div>
+          <p className="eyebrow">AI Engineer • Product Builder • Community Leader</p>
+          <h1>{profile.name}</h1>
+          <p className="tagline">{profile.tagline}</p>
+          <p>{profile.intro}</p>
+        </div>
       </section>
 
       <Section id="about" eyebrow="ABOUT" title="About Me">
@@ -44,10 +47,24 @@ function App() {
               <h3>{project.title}</h3>
               <p>{project.description}</p>
 
-              <div>
+              <div className="chips">
                 {project.techStack.map((tech) => (
                   <span key={tech}>{tech}</span>
                 ))}
+              </div>
+
+              <div className="card-links">
+                {project.liveLink && (
+                  {project.liveLink}
+                    Live
+                  </a>
+                )}
+
+                {project.repoLink && (
+                  {project.repoLink}
+                    Code
+                  </a>
+                )}
               </div>
             </article>
           ))}
