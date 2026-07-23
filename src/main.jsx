@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ArrowUpRight, Linkedin, Github, Mail } from 'lucide-react';
-import { profile } from './profile.js';
-import './styles.css';
+import { profile } from "./data/profile.js";
+import "./styles/styles.css";
 
 function TopographicLines() {
   return (
