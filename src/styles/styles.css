@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0d10;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: #111;
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.hero {
+  padding: 80px 40px;
+}
+
+.section {
+  padding: 60px 40px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 12px;
+}
+
+.skill-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.skill-grid span {
+  background: #222;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #111;
+}
