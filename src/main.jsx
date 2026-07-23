@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Github, Linkedin, Mail } from "lucide-react";
-
 import Section from "./components/Section.jsx";
 import { profile } from "./data/profile.js";
 import "./styles/styles.css";
@@ -14,7 +13,8 @@ function Header() {
       </a>
 
       <nav>
-        <a href="#about">About</aprojectsProjects</a>
+        #aboutAbout</a>
+        #projectsProjects</a>
         #skillsSkills</a>
         #contactContact</a>
       </nav>
@@ -46,7 +46,7 @@ function App() {
 
               <div>
                 {project.techStack.map((tech) => (
-                  <span key={tech}>{tech} </span>
+                  <span key={tech}>{tech}</span>
                 ))}
               </div>
             </article>
@@ -62,18 +62,21 @@ function App() {
         </div>
       </Section>
 
-      <Section id="contact" eyebrow="CONTACT" title="Let's Connect">
+      <Section id="contact" eyebrow="CONTACT" title="Connect">
         <div className="contact-links">
           {`mailto:${profile.email}`}
-            <Mail size={18} /> Email
+            <Mail size={18} />
+            Email
           </a>
 
           {profile.links.github}
-            <Github size={18} /> GitHub
+            <Github size={18} />
+            GitHub
           </a>
 
           {profile.links.linkedin}
-            <Linkedin size={18} /> LinkedIn
+            <Linkedin size={18} />
+            LinkedIn
           </a>
         </div>
       </Section>
