@@ -67,8 +67,7 @@ function Hero() {
           <p className={`eyebrow reveal-text ${progress > 0.02 ? "is-visible" : ""}`}>{profile.role}</p>
           <h1 className={`mega-title reveal-text ${progress > 0.14 ? "is-visible" : ""}`}>{profile.name}</h1>
           <p className={`hero-line reveal-text ${progress > 0.32 ? "is-visible" : ""}`}>{profile.heroLine}</p>
-          <p className={`hero-subline reveal-text ${progress > 0.50 ? "is-visible" : ""}`}>{profile.statement}</p>
-          <div className={`hero-actions reveal-text ${progress > 0.68 ? "is-visible" : ""}`}>
+            <div className={`hero-actions reveal-text ${progress > 0.68 ? "is-visible" : ""}`}>
             <a className="button primary" href="#work">View Work</a>
             <a className="button secondary" href={`mailto:${profile.email}`}>Email</a>
           </div>
